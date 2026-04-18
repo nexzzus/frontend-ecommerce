@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
+    "@windmill/react-ui": "^0.6.0",
     "axios": "^1.15.0",
     "daisyui": "^5.5.19",
     "react": "^19.2.4",
