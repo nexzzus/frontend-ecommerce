@@ -36,7 +36,7 @@ Cliente web en **React** con **Tailwind CSS** que consume la API REST del backen
 - Navegador moderno (Chrome, Firefox, Safari, Edge)
 ---
 ## Estructura de carpetas
-\\\
+
 frontend-ecommerce/
 ├── src/
 │   ├── main.jsx                     ← Punto de entrada
@@ -54,13 +54,13 @@ frontend-ecommerce/
 │   ├── services/                    ← Servicios HTTP (Auth, Users)
 │   ├── store/                       ← Estado con Zustand
 │   └── utils/icons.js              ← Mapeo de iconos
-\\\
+
 ---
 ## Instalación
 \\\ash
 cd frontend-ecommerce
 npm install
-\\\
+
 ---
 ## Configuración del API
 Edita **\src/config/api.js\**:
