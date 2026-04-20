@@ -2,6 +2,7 @@ import { lazy } from 'react'
 
 // use lazy for better code splitting, a.k.a. load faster
 const Page404 = lazy(() => import('../pages/Page404.jsx'))
+const Users = lazy(() => import('../pages/Dashboard/users/./UsersPage'))
 
 /**
  * ⚠ These are internal routes!
@@ -18,6 +19,10 @@ const routes = [
         path: '/404',
         component: Page404,
     },
+    {
+        path: '/users',
+        component: Users,
+    }
 ]
 
 export default routes

@@ -1,7 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
-import windmill from '@windmill/react-ui/config'
 
-export default windmill({
+export default {
     content: [
         "./index.html",
         "./src/**/*.{js,jsx,ts,tsx}",
@@ -18,4 +17,5 @@ export default windmill({
             },
         },
     },
-})
+    plugins: [],
+}
