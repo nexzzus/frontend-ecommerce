@@ -5,16 +5,19 @@ import {IoIosMoon, IoMdExit} from "react-icons/io";
 import { useTheme } from '../context/useTheme'
 import {useAuth} from "../context/AuthContextCreate.js";
 import {useNavigate} from "react-router-dom";
+import {useAuthStore} from "../store/authStore.js";
 
 function Header() {
     const { theme, toggleTheme } = useTheme()
     const { toggleSidebar } = useSidebar()
-    const {user, logout} = useAuth()
+    // const {user, logout} = useAuth()
+    const user = useAuthStore(state => state.user)
+    const logout = useAuthStore(state => state.logout)
     const navigate = useNavigate()
 
     const handleLogout = () => {
         logout()
-        navigate("/auth/login")
+        navigate("/auth/login", { replace: true })
     }
 
     return (

@@ -1,5 +1,5 @@
 import React, {Suspense, useEffect, lazy} from 'react'
-import {Navigate, Route, Routes, useLocation, useNavigate} from 'react-router-dom'
+import {Navigate, Route, Routes, useLocation} from 'react-router-dom'
 import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
@@ -7,22 +7,23 @@ import Header from '../components/Header'
 import Main from '../layout/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import {useSidebar} from '../context/SidebarContextCreate'
-import {useAuth} from "../context/AuthContextCreate.js";
+import {useAuthStore} from "../store/authStore.js";
 
 const Page404 = lazy(() => import('../pages/Page404.jsx'))
 
 function Layout() {
     const {isSidebarOpen, closeSidebar} = useSidebar()
     let location = useLocation()
-    const {isAuthenticated} = useAuth()
-    console.log("isAuthenticated", isAuthenticated)
-    if (!isAuthenticated) {
-        return <Navigate to="/auth/login" replace />
-    }
+    const user = useAuthStore(state => state.user)
+    const isAuthenticated = !!user
 
     useEffect(() => {
         closeSidebar()
     }, [location, closeSidebar])
+
+    if (!isAuthenticated) {
+        return <Navigate to="/auth/login" replace />
+    }
 
     return (
         <div
