@@ -130,12 +130,15 @@ register('nombre', { required: 'Campo obligatorio' })
 | Sidebar desbordado | Ajusta breakpoints Tailwind |
 | Toast no muestra | Verifica que hay \<Toaster />\ |
 ---
+
 ## Comandos
+```bash
 npm install      # Instalar dependencias
 npm run dev      # Servidor desarrollo
 npm run build    # Compilar producción
 npm run preview  # Vista previa
 npm run lint     # Linting
+```
 ---
 ## Agregar nueva entidad
 1. Crear servicio: \src/services/entityService.js\
