@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useForm} from "react-hook-form";
-import {useAuth} from "../../context/AuthContextCreate.js";
 import {loginService} from "../../services/authService.js";
 import {useNavigate} from "react-router-dom";
+import {useAuthStore} from "../../store/authStore.js";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -10,9 +10,7 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: {errors, isSubmitting},
-        setError,
-        reset,
-        setValue
+        watch,
     } = useForm({
         mode: 'onChange',
         defaultValues: {
@@ -21,8 +19,17 @@ const LoginForm = () => {
         }
     })
 
-    const {login} = useAuth()
+    // const {login} = useAuth()
+    const login = useAuthStore(state => state.login)
     const [viewPassword, setViewPassword] = React.useState(false)
+    const [errorMessage, setErrorMessage] = React.useState('')
+
+    const username = watch('username')
+    const password = watch('password')
+
+    useEffect(() => {
+        setErrorMessage('')
+    }, [username, password])
 
     const togglePassword = () => {
         setViewPassword((prev) => !prev)
@@ -36,10 +43,8 @@ const LoginForm = () => {
             navigate('/app/users')
         } catch (error) {
             console.error('Error en login:', error);
-            setError('general', {
-                type: 'manual',
-                message: error?.message || 'Error al iniciar sesión'
-            });
+            console.log('Setting error message:', error?.message);
+            setErrorMessage(error?.message || 'Error al iniciar sesión')
         }
     }
 
@@ -50,9 +55,9 @@ const LoginForm = () => {
             <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Please sign in to continue</p>
 
             {/* Mostrar error general si existe */}
-            {errors.general && (
-                <div className="mt-4 p-3 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg text-sm">
-                    {errors.general.message}
+            {errorMessage && (
+                <div className="mt-4 p-3 bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-300 rounded-lg text-sm border border-red-200 dark:border-red-800">
+                    {errorMessage}
                 </div>
             )}
 
@@ -139,3 +144,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
