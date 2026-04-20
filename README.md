@@ -57,17 +57,18 @@ frontend-ecommerce/
 
 ---
 ## Instalación
-git clone <repo>
+```bash
+git clone <repo> frontend-ecommerce
 cd frontend-ecommerce
 npm install
-
+```
 ---
 ## Configuración del API
-Edita **\src/config/api.js\**:
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-export default API_URL;
-O crea **\.env.local\**:
-VITE_API_URL=http://tu-servidor:8000
+- Edita **\src/config/api.js\**:
+- const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+- export default API_URL;
+- O crea **\.env.local\**:
+- VITE_API_URL=http://tu-servidor:8000
 
 ---
 ## Ejecución
