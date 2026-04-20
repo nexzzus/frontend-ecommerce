@@ -36,7 +36,7 @@ Cliente web en **React** con **Tailwind CSS** que consume la API REST del backen
 - Navegador moderno (Chrome, Firefox, Safari, Edge)
 ---
 ## Estructura de carpetas
-
+```
 frontend-ecommerce/
 ├── src/
 │   ├── main.jsx                     ← Punto de entrada
@@ -54,7 +54,7 @@ frontend-ecommerce/
 │   ├── services/                    ← Servicios HTTP (Auth, Users)
 │   ├── store/                       ← Estado con Zustand
 │   └── utils/icons.js              ← Mapeo de iconos
-
+```
 ---
 ## Instalación
 ```bash
@@ -73,8 +73,8 @@ npm install
 ---
 ## Ejecución
 ### Desarrollo
-npm run dev
-Abre http://localhost:5173 en el navegador.
+1. npm run dev
+2. Abre http://localhost:5173 en el navegador.
 ### Producción
 npm run build
 npm run preview
