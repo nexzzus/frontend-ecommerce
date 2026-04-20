@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Layout from "./layout/Layout.jsx";
 import {SidebarProvider} from "./context/SidebarContext.jsx";
+import Home from "./layout/Home.jsx";
 
 function App() {
     return (
@@ -8,7 +9,8 @@ function App() {
             <BrowserRouter>
                 <SidebarProvider>
                     <Routes>
-                        <Route path={"/*"} element={<Layout/>}/>
+                        <Route path={"/auth/login"} element={<Home/>}/>
+                        <Route path={"/app/*"} element={<Layout/>}/>
                     </Routes>
                 </SidebarProvider>
             </BrowserRouter>

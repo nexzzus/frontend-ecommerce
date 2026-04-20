@@ -3,10 +3,19 @@ import { useSidebar} from '../context/SidebarContextCreate'
 import {IoMenuSharp, IoSunny} from "react-icons/io5";
 import {IoIosMoon, IoMdExit} from "react-icons/io";
 import { useTheme } from '../context/useTheme'
+import {useAuth} from "../context/AuthContextCreate.js";
+import {useNavigate} from "react-router-dom";
 
 function Header() {
     const { theme, toggleTheme } = useTheme()
     const { toggleSidebar } = useSidebar()
+    const {user, logout} = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        logout()
+        navigate("/auth/login")
+    }
 
     return (
         <header className="z-40 py-4 bg-white shadow-md dark:bg-gray-800 h-16 w-full">
@@ -17,10 +26,16 @@ function Header() {
                     onClick={toggleSidebar}
                     aria-label="Menu"
                 >
-                    {/*<MenuIcon className="w-6 h-6" aria-hidden="true" />*/}
                     <IoMenuSharp className={"w-6 h-6"} aria-hidden={"true"} />
                 </button>
                 <ul className="flex ml-auto shrink-0 space-x-4 sm:space-x-6">
+                    <li>
+                        {user ?
+                            <span className={"text-sm font-medium"}>{user.nombre_usuario} | {user.rol}</span>
+
+                            : <span className={"text-sm font-medium"}>Invitado</span>
+                        }
+                    </li>
                     {/* <!-- Theme toggler --> */}
                     <li className="flex">
                         <button
@@ -38,7 +53,9 @@ function Header() {
 
                     {/* <!-- Profile menu --> */}
                     <li className="flex items-center">
-                        <button className="p-1 rounded-md focus:outline-none focus:shadow-outline-purple transition-colors hover:text-purple-700 dark:hover:text-purple-200">
+                        <button
+                            onClick={handleLogout}
+                            className="p-1 rounded-md focus:outline-none focus:shadow-outline-purple transition-colors hover:text-purple-700 dark:hover:text-purple-200">
                             <IoMdExit className={"w-5 h-5"} aria-hidden={"true"}/>
                         </button>
                     </li>

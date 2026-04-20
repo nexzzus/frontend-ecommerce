@@ -21,6 +21,10 @@ const routes = [
         icon: 'CategoriesIcon',
         name: 'Categorías',
     },
+    {
+        path: '/auth/login',
+        name: 'Login',
+    }
 ]
 
 export default routes
