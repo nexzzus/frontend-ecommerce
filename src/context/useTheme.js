@@ -1,6 +1,5 @@
 import React from 'react'
-
-export const ThemeContext = React.createContext()
+import { ThemeContext } from './ThemeContextCreate'
 
 export const useTheme = () => {
     const context = React.useContext(ThemeContext)
@@ -9,4 +8,3 @@ export const useTheme = () => {
     }
     return context
 }
-
