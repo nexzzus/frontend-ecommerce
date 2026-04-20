@@ -18,11 +18,14 @@ export const loginService = async (data)=>{
             })
         return response.data;
     } catch (error) {
-        console.log(error);
-        const backendError = error.response?.data;
+        console.log("FULL ERROR:", error);
 
-        throw {
-            message: backendError?.error?.message || "Error al iniciar sesión"
-        };
+        const errorMessage =
+            error.response?.data?.detail || // FastAPI
+            error.response?.data?.error?.message || // tu formato viejo
+            error.message || // axios/network
+            "Error al iniciar sesión";
+
+        throw { message: errorMessage };
     }
 }
