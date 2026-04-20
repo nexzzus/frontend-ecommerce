@@ -34,5 +34,3 @@ const iconMap = {
 export const getIcon = (iconName) => {
     return iconMap[iconName] || FiHome
 }
-
-
