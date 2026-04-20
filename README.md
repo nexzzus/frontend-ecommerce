@@ -57,33 +57,26 @@ frontend-ecommerce/
 
 ---
 ## Instalación
-\\\ash
+git clone <repo>
 cd frontend-ecommerce
 npm install
 
 ---
 ## Configuración del API
 Edita **\src/config/api.js\**:
-\\\js
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 export default API_URL;
-\\\
 O crea **\.env.local\**:
-\\\
 VITE_API_URL=http://tu-servidor:8000
-\\\
+
 ---
 ## Ejecución
 ### Desarrollo
-\\\ash
 npm run dev
-\\\
 Abre http://localhost:5173 en el navegador.
 ### Producción
-\\\ash
 npm run build
 npm run preview
-\\\
 ---
 ## Stack Arquitectura
 ### Arranque
@@ -105,10 +98,8 @@ npm run preview
 - **userService**: GET, POST, PUT, DELETE usuarios
 ### Validación de formularios
 Se usa **react-hook-form**:
-\\\jsx
 const { register, handleSubmit, formState: { errors } } = useForm();
 register('nombre', { required: 'Campo obligatorio' })
-\\\
 ---
 ## Tema oscuro/claro
 **ThemeContext** maneja:
@@ -140,13 +131,11 @@ register('nombre', { required: 'Campo obligatorio' })
 | Toast no muestra | Verifica que hay \<Toaster />\ |
 ---
 ## Comandos
-\\\ash
 npm install      # Instalar dependencias
 npm run dev      # Servidor desarrollo
 npm run build    # Compilar producción
 npm run preview  # Vista previa
 npm run lint     # Linting
-\\\
 ---
 ## Agregar nueva entidad
 1. Crear servicio: \src/services/entityService.js\
@@ -155,7 +144,3 @@ npm run lint     # Linting
 4. Registrar ruta en \src/routes/index.js\
 5. Agregar al sidebar en \src/routes/sidebar.js\
 6. Agregar ícono en \src/utils/icons.js\
----
-**¡Bienvenido! Comienza con \
-pm install\ y \
-pm run dev\. ¡Feliz desarrollo! 🚀**
