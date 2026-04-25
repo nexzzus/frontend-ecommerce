@@ -13,8 +13,13 @@ const routes = [
     },
     {
         path: '/app/roles',
-        icon: 'ProductsIcon',
+        icon: 'RolesIcon',
         name: 'Roles',
+    },
+    {
+        path: '/app/permissions',
+        icon: 'PermissionsIcon',
+        name: 'Permisos',
     }
 ]
 
