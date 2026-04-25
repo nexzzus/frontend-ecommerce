@@ -1,10 +1,11 @@
-import { lazy } from 'react'
+import {lazy} from 'react'
 
 // use lazy for better code splitting, a.k.a. load faster
 const Page404 = lazy(() => import('../pages/Page404.jsx'))
 const Users = lazy(() => import('../pages/Dashboard/users/UsersPage.jsx'))
 const Login = lazy(() => import('../pages/Login.jsx'))
 const Roles = lazy(() => import('../pages/Dashboard/roles/RolesPage.jsx'))
+const Permissions = lazy(() => import('../pages/Dashboard/permissions/PermissionsPage.jsx'))
 
 /**
  * ⚠ These are internal routes!
@@ -24,6 +25,10 @@ const routes = [
     {
         path: 'roles',
         component: Roles
+    },
+    {
+        path: 'permissions',
+        component: Permissions
     },
     {
         path: '404',
