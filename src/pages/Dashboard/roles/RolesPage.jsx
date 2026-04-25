@@ -30,9 +30,11 @@ const RolesPage = () => {
 
     const handleCloseModal = () => {
         setOpen(false);
+        setEditingRole(null)
     }
 
     const handleOpenModal = () => {
+        setEditingRole(null)
         setOpen(true);
     }
 
