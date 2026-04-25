@@ -12,18 +12,9 @@ const routes = [
         name: 'Usuarios', // name that appear in Sidebar
     },
     {
-        path: '/app/products',
+        path: '/app/roles',
         icon: 'ProductsIcon',
-        name: 'Productos',
-    },
-    {
-        path: '/app/categories',
-        icon: 'CategoriesIcon',
-        name: 'Categorías',
-    },
-    {
-        path: '/auth/login',
-        name: 'Login',
+        name: 'Roles',
     }
 ]
 

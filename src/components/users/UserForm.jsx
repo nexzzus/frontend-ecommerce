@@ -4,15 +4,21 @@ import {useTheme} from "../../context/useTheme";
 import PhoneInput, {isValidPhoneNumber} from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import {createUser, updateUser} from "../../services/userService.js";
-
-const roles = [
-    {id: "5bb3b101-b967-424a-8a0f-c174f7196fd4", name: "ADMIN"},
-    {id: "56cbacdf-2fc9-43f0-858d-3a9d852d50eb", name: "USER"},
-    {id: 4, name: "OTHER"},
-]
+import {useThemeStyles} from "../../context/useThemeStyles.js";
+import {useRolesStore} from "../../store/rolesStore.js";
 
 function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
     const {theme} = useTheme();
+    const styles = useThemeStyles();
+    const roles = useRolesStore(state => state.roles);
+    const loading = useRolesStore(state => state.isLoading);
+    const fetchRoles = useRolesStore(state => state.fetchRoles);
+
+    useEffect(() => {
+        if (roles.length === 0) {
+            fetchRoles();
+        }
+    }, [fetchRoles, roles.length]);
 
     const {
         register,
@@ -56,7 +62,7 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
 
     const onSubmit = async (data) => {
         try {
-            if (editingUser?.id){
+            if (editingUser?.id) {
                 await updateUser(editingUser.id, data);
             } else {
                 await createUser(data);
@@ -73,7 +79,7 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                     message: "Este correo ya está registrado"
                 });
             } else {
-                setError("root", { message });
+                setError("root", {message});
             }
         }
     };
@@ -84,19 +90,9 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
         onClose?.();
     };
 
-    // estilos reutilizables
-    const inputBase = `w-full px-4 py-2.5 border rounded-lg font-medium transition
-    ${
-        theme === "dark"
-            ? "bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500"
-            : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500"
-    }`;
-
     const label = `block text-sm font-semibold mb-2 ${
         theme === "dark" ? "text-gray-200" : "text-gray-700"
     }`;
-
-    const errorText = "text-red-500 text-xs mt-1 ml-1";
 
     const phoneWrapper = `w-full px-3 py-2 border rounded-lg flex items-center gap-2
     ${
@@ -122,11 +118,11 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                                 message: "Solo letras",
                             },
                         })}
-                        className={`${inputBase} ${errors.first_name && "border-red-500"}`}
+                        className={`${styles.inputBase} ${errors.first_name ? styles.inputError : ""}`}
                         placeholder="Pepito"
                     />
                     {errors.first_name && (
-                        <span className={errorText}>{errors.first_name.message}</span>
+                        <span className={styles.errorText}>{errors.first_name.message}</span>
                     )}
                 </div>
 
@@ -141,11 +137,11 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                                 message: "Solo letras",
                             },
                         })}
-                        className={`${inputBase} ${errors.last_name && "border-red-500"}`}
+                        className={`${styles.inputBase} ${errors.last_name ? styles.inputError : ""}`}
                         placeholder="Pérez"
                     />
                     {errors.last_name && (
-                        <span className={errorText}>{errors.last_name.message}</span>
+                        <span className={styles.errorText}>{errors.last_name.message}</span>
                     )}
                 </div>
             </div>
@@ -162,11 +158,11 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                             message: "Email inválido",
                         },
                     })}
-                    className={`${inputBase} ${errors.email && "border-red-500"}`}
+                    className={`${styles.inputBase} ${errors.email ? styles.inputError : ""}`}
                     placeholder="correo@email.com"
                 />
                 {errors.email && (
-                    <span className={errorText}>{errors.email.message}</span>
+                    <span className={styles.errorText}>{errors.email.message}</span>
                 )}
             </div>
 
@@ -188,10 +184,10 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                                message: "Contraseña demasiado larga"
                            }
                        })}
-                       className={`${inputBase} ${errors.password && "border-red-500"}`}
+                       className={`${styles.inputBase} ${errors.password ? styles.inputError : ""}`}
                 />
                 {errors.password && (
-                    <span className={errorText}>{errors.password.message}</span>
+                    <span className={styles.errorText}>{errors.password.message}</span>
                 )}
             </div>
 
@@ -221,7 +217,7 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                     />
 
                     {errors.phone && (
-                        <span className={errorText}>{errors.phone.message}</span>
+                        <span className={styles.errorText}>{errors.phone.message}</span>
                     )}
                 </div>
 
@@ -231,11 +227,11 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                         {...register("address", {
                             minLength: {value: 5, message: "Dirección inválida"},
                         })}
-                        className={`${inputBase} ${errors.address && "border-red-500"}`}
+                        className={`${styles.inputBase} ${errors.address ? styles.inputError : ""}`}
                         placeholder="Cra 99 #99-99"
                     />
                     {errors.address && (
-                        <span className={errorText}>{errors.address.message}</span>
+                        <span className={styles.errorText}>{errors.address.message}</span>
                     )}
                 </div>
             </div>
@@ -243,17 +239,22 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
             {/* Roles */}
             <div>
                 <label htmlFor="roles" className={label}>Rol</label>
-                {roles.map((role) => (
-                    <label key={role.id} className={"flex flex-wrap items-center gap-2"}>
-                        <input type="checkbox"
-                               value={role.id}
-                               {...register("role_ids")}
-                               className={"w-4 h-4"}/>
-                        {role.name}
-                    </label>
-                ))}
+                {loading ? (
+                    <span className={"text-sm text-gray-500"}>Cargando roles...</span>
+                ) : (
+                    roles.map((role) => (
+                        <label key={role.id} className={"flex flex-wrap items-center gap-2"}>
+                            <input type="checkbox"
+                                   value={role.id}
+                                   {...register("role_ids")}
+                                   className={"w-4 h-4"}/>
+                            {role.name}
+                        </label>
+                    ))
+                )}
+
                 {errors.role_ids && (
-                    <span className={errorText}>{errors.role_ids.message}</span>
+                    <span className={styles.errorText}>{errors.role_ids.message}</span>
                 )}
             </div>
 

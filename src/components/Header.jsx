@@ -3,7 +3,6 @@ import { useSidebar} from '../context/SidebarContextCreate'
 import {IoMenuSharp, IoSunny} from "react-icons/io5";
 import {IoIosMoon, IoMdExit} from "react-icons/io";
 import { useTheme } from '../context/useTheme'
-import {useAuth} from "../context/AuthContextCreate.js";
 import {useNavigate} from "react-router-dom";
 import {useAuthStore} from "../store/authStore.js";
 

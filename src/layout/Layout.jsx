@@ -15,11 +15,17 @@ function Layout() {
     const {isSidebarOpen, closeSidebar} = useSidebar()
     let location = useLocation()
     const user = useAuthStore(state => state.user)
+    const isInitializing = useAuthStore(state => state.isInitializing)
     const isAuthenticated = !!user
 
     useEffect(() => {
         closeSidebar()
     }, [location, closeSidebar])
+
+    // Mostrar loading mientras se verifica la autenticación
+    if (isInitializing) {
+        return <ThemedSuspense />
+    }
 
     if (!isAuthenticated) {
         return <Navigate to="/auth/login" replace />

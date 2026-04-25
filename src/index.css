@@ -51,3 +51,15 @@ input:-webkit-autofill:active {
     background-color: #374151;
     color: white;
 }
+
+/* Estilos de error para inputs */
+input.border-2.border-red-500 {
+    border-color: rgb(239, 68, 68) !important;
+    border-width: 2px !important;
+    outline: none !important;
+}
+
+input.border-2:focus {
+    --tw-ring-color: rgb(239, 68, 68) !important;
+    outline: none !important;
+}

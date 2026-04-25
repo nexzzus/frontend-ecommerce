@@ -4,6 +4,7 @@ import { lazy } from 'react'
 const Page404 = lazy(() => import('../pages/Page404.jsx'))
 const Users = lazy(() => import('../pages/Dashboard/users/UsersPage.jsx'))
 const Login = lazy(() => import('../pages/Login.jsx'))
+const Roles = lazy(() => import('../pages/Dashboard/roles/RolesPage.jsx'))
 
 /**
  * ⚠ These are internal routes!
@@ -19,6 +20,10 @@ const routes = [
     {
         path: 'users',
         component: Users,
+    },
+    {
+        path: 'roles',
+        component: Roles
     },
     {
         path: '404',
