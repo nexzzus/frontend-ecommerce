@@ -1,6 +1,7 @@
 import {useTheme} from '../../context/useTheme.js';
 import {PencilIcon, TrashIcon} from '@heroicons/react/24/outline';
 import {useThemeStyles} from "../../context/useThemeStyles.js";
+import Button from "../Button.jsx";
 
 function UserTable({users, onEdit, onDelete}) {
     const {theme} = useTheme();
@@ -48,20 +49,20 @@ function UserTable({users, onEdit, onDelete}) {
                     </td>
                     <td className={`${styles.cellClass} text-center`}>
                         <div className="flex gap-2 justify-center flex-wrap">
-                            <button
+                            <Button
                                 onClick={() => onEdit(user)}
-                                className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium"
+                                variant={"edit"}
                                 title="Editar usuario"
+                                icono={PencilIcon}
                             >
-                                <PencilIcon className="h-4 w-4"/>
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 onClick={() => onDelete && onDelete(user.id)}
-                                className="flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium"
+                                variant={"delete"}
                                 title="Eliminar usuario"
+                                icono={TrashIcon}
                             >
-                                <TrashIcon className="w-4 h-4"/>
-                            </button>
+                            </Button>
                         </div>
                     </td>
                 </tr>))) : (<tr>
