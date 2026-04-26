@@ -25,16 +25,25 @@ const PermissionsTable = ({permissions, onEdit, onDelete}) => {
                                     <Button
                                         title={"Editar permiso"}
                                         icono={PencilIcon}
-                                        action={"edit"}/>
+                                        variant={"edit"}
+                                        onClick={() => onEdit(permission)}
+                                    />
                                     <Button
                                         title={"Eliminar permiso"}
-                                        icono={TrashIcon}></Button>
+                                        icono={TrashIcon}
+                                        variant={"delete"}
+                                        onClick={() => onDelete && onDelete(permission.id)}
+                                    ></Button>
                                 </div>
                             </td>
                         </tr>
                     )))
                     : (
-                        <td><span className={styles.cellColor}>No hay permisos</span></td>
+                        <tr>
+                            <td>
+                                <span className={styles.cellColor}>No hay permisos</span>
+                            </td>
+                        </tr>
                     )
                 }
                 </tbody>
