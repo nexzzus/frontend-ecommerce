@@ -175,7 +175,7 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
                 <input type="password"
                        id={"password"}
                        {...register("password", {
-                           required: "Requerido",
+                           required: editingUser ? false : "Requerido",
                            minLength: {
                                value: 6,
                                message: "Contraseña demasiado corta"

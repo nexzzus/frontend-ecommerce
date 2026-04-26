@@ -26,7 +26,7 @@ function UserTable({users, onEdit, onDelete}) {
                 </tr>
                 </thead>
                 <tbody>
-                {users && users.length > 0 ? (users.map((user, i) => (<tr key={i} className={styles.tableHeaderClass}>
+                {users && users.length > 0 ? (users.map((user, i) => (<tr key={i}>
                     <td className={styles.cellColor}>
                         <p className="font-semibold truncate pl-6">{user.first_name}</p>
                     </td>

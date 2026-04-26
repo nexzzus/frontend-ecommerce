@@ -4,6 +4,7 @@ import {SidebarProvider} from "./context/SidebarContext.jsx";
 import Home from "./layout/Home.jsx";
 import {useAuthStore} from "./store/authStore.js";
 import {useEffect} from "react";
+import {Toaster} from "sonner";
 
 function App() {
     const initAuth = useAuthStore(state => state.initAuth)
@@ -17,6 +18,7 @@ function App() {
         <>
             <BrowserRouter>
                 <SidebarProvider>
+                    <Toaster richColors position={"top-right"}/>
                     <Routes>
                         <Route
                             path={"/auth/login"}

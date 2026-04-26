@@ -5,6 +5,7 @@ import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
 
 const PermissionsTable = ({permissions, onEdit, onDelete}) => {
     const styles = useThemeStyles();
+
     return (
         <div className={"w-full overflow-auto rounded-lg border"} style={{borderColor: styles.borderColor}}>
             <table className={`w-full text-center`}>

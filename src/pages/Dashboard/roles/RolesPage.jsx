@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
-import {deleteRoleService, getRoles} from "../../../services/rolesService.js";
 import RolesTable from "../../../components/roles/RolesTable.jsx";
 import {useThemeStyles} from "../../../context/useThemeStyles.js";
 import Modal from "../../../components/Modal.jsx";
 import RolesForm from "../../../components/roles/RolesForm.jsx";
+import {toast} from "sonner";
+import Swal from "sweetalert2";
+import {deletePermissionService} from "../../../services/permissionService.js";
+import {deleteRoleService, getRoles} from "../../../services/rolesService.js";
 
 const RolesPage = () => {
     const styles = useThemeStyles()
@@ -38,16 +41,26 @@ const RolesPage = () => {
         setOpen(true);
     }
 
-    const handleDeleteRole = async (id)=>{
-        if (window.confirm("Eliminar rol")){
+    const handleDeleteRole = async (id) => {
             try {
-                await deleteRoleService(id)
-                await fetchRoles()
-                alert("Rol eliminado correctamente")
-            }catch (e) {
+                const result = await Swal.fire({
+                    title: "¿Eliminar?",
+                    text: "No podrás revertir esto",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, eliminar",
+                });
+
+                if (result.isConfirmed) {
+                    await deleteRoleService(id)
+                    toast.success("Permiso eliminado correctamente")
+                    await fetchRoles()
+                }
+
+            } catch (e) {
                 console.log(e)
-                alert("Error al eliminar el rol. Por favor intenta de nuevo.")
-            }
+                toast.error("Error al eliminar el rol. Por favor intenta de nuevo.");
+
         }
     }
 

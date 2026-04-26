@@ -4,7 +4,9 @@ import PermissionsTable from "../../../components/permissions/PermissionsTable.j
 import {deletePermissionService, getPermissionsService} from "../../../services/permissionService.js";
 import Modal from "../../../components/Modal.jsx";
 import PermissionsForm from "../../../components/permissions/PermissionsForm.jsx";
-import {deleteRoleService} from "../../../services/rolesService.js";
+import Swal from "sweetalert2";
+
+import {toast} from "sonner";
 
 const PermissionsPage = () => {
     const styles = useThemeStyles();
@@ -12,14 +14,14 @@ const PermissionsPage = () => {
     const [open, setOpen] = React.useState(false);
     const [editingPermission, setEditingPermission] = React.useState(null);
 
-    const fetchRoles = async () => {
+    const fetchPermission = async () => {
         const res = await getPermissionsService()
         setPermissions(res.data)
     }
 
     useEffect(() => {
         const loadPermissions = async () => {
-            await fetchRoles()
+            await fetchPermission()
         }
         loadPermissions()
     }, []);
@@ -37,11 +39,21 @@ const PermissionsPage = () => {
 
     const handleDelete = async (id) => {
         try {
-            if (window.confirm("¿Eliminar permiso?")) {
+
+            const result = await Swal.fire({
+                title: "¿Eliminar?",
+                text: "No podrás revertir esto",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Sí, eliminar",
+            });
+
+            if (result.isConfirmed) {
                 await deletePermissionService(id)
-                alert("Permiso eliminado correctamente")
-                await fetchRoles()
+                toast.success("Permiso eliminado correctamente")
+                await fetchPermission()
             }
+
         } catch (e) {
             console.log(e)
         }
@@ -62,7 +74,7 @@ const PermissionsPage = () => {
                 title={modalTitle}
             >
                 <PermissionsForm
-                    fetchPermission={fetchRoles}
+                    fetchPermission={fetchPermission}
                     onClose={handleCloseModal}
                     setEditingPermission={setEditingPermission}
                     editingPermission={editingPermission}

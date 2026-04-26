@@ -50,9 +50,9 @@ const LoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}
-              className="sm:w-[350px] w-full text-center border border-gray-300/60 dark:border-gray-700 rounded-2xl px-8 py-10 bg-white dark:bg-gray-800 shadow-lg">
-            <h1 className="text-gray-900 dark:text-white text-3xl font-medium">Login</h1>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">Please sign in to continue</p>
+              className="sm:w-[350px] w-full text-center border border-gray-300/60 dark:border-gray-700 rounded-2xl px-8 py-10 dark:bg-gray-800 shadow-lg bg-white bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20">
+            <h1 className="text-black dark:text-white text-3xl font-medium">Login</h1>
+            <p className="text-gray-200 dark:text-gray-400 text-sm mt-2">Please sign in to continue</p>
 
             {/* Mostrar error general si existe */}
             {errorMessage && (
@@ -128,7 +128,7 @@ const LoginForm = () => {
 
             <div className="mt-4 text-left">
                 <button
-                    className="text-sm text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300"
+                    className="text-sm text-slate-300 hover:text-slate-200"
                     type="button"
                     disabled={true}
                 >Forget password?
@@ -136,7 +136,7 @@ const LoginForm = () => {
             </div>
             <button type="submit"
                     disabled={isSubmitting}
-                    className="mt-6 w-full h-11 rounded-full text-white bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+                    className="hover:scale-105 transition-transform mt-6 w-full h-11 rounded-full text-white bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed">
                 {isSubmitting ? 'Iniciando sesión...' : 'Login'}
             </button>
         </form>

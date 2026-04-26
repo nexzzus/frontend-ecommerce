@@ -45,8 +45,23 @@ export const deleteUser = async (id) => {
 
 export const updateUser = async (id, data) => {
     try {
-        const response = await api.put(`${API_URL}/${id}/roles`, data)
-        return response.data.data;
+        // 1. actualizar usuario
+        await api.put(`${API_URL}/${id}`, {
+            first_name: data.first_name,
+            last_name: data.last_name,
+            email: data.email,
+            phone: data.phone,
+            address: data.address,
+            password: data.password || undefined,
+        });
+
+        // 2. actualizar roles
+        if (data.role_ids) {
+            await api.put(`${API_URL}/${id}/roles`, {
+                role_ids: data.role_ids,
+            });
+        }
+
     } catch (error) {
         const backendError = error.response?.data;
         throw {
