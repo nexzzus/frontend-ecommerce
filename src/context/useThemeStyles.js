@@ -84,5 +84,9 @@ export const useThemeStyles = () => {
         // Boton para acciones de tabla (editar/eliminar)
         buttonActionDelete: "flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium",
         buttonActionEdit: "flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium",
+
+        // Boton para acciones de formulario (Guardar, Editar, Cancelar)
+        buttonCancel: "flex-1 bg-gray-300 hover:bg-gray-400 py-2.5 rounded-lg",
+        buttonCreate: "flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg"
     }
 }
