@@ -113,8 +113,9 @@ const PermissionsForm = ({fetchPermission, editingPermission, setEditingPermissi
                         title={"Crear"}
                         variant={"create"}
                         type={"submit"}
+                        isLoading={isSubmitting}
                     >
-                        {isSubmitting ? "Creando..." : "Crear"}
+                        {editingPermission?.id ? "Editar" : "Crear"}
                     </Button>
                     <Button
                         title={"Cancelar"}
