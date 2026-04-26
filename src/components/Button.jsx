@@ -26,7 +26,7 @@ const Button = ({
         <>
             <button
                 type={type}
-                className={`flex justify-center ${buttonStyle} ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`hover:scale-105 flex justify-center ${buttonStyle} ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 title={title}
                 aria-label={title}
                 onClick={onClick}
