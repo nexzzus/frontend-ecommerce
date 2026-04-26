@@ -12,7 +12,6 @@
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "@heroicons/react": "^2.2.0",
-    "@windmill/react-ui": "^0.6.0",
     "autoprefixer": "^10.5.0",
     "axios": "^1.15.0",
     "jwt-decode": "^4.0.0",

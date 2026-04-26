@@ -1,42 +1,26 @@
-import React from 'react'
+import SidebarContent from "./SidebarContent.jsx";
+import {useSidebar} from "../../context/SidebarContextCreate.js";
 
-import SidebarContent from './SidebarContent'
-import { Transition, Backdrop } from '@windmill/react-ui'
+const MobileSidebar = () => {
+    const {isSidebarOpen, closeSidebar} = useSidebar()
 
-import { useSidebar} from '../../context/SidebarContextCreate'
-
-function MobileSidebar() {
-    const { isSidebarOpen, closeSidebar } = useSidebar()
+    if (!isSidebarOpen) return null
 
     return (
-        <Transition show={isSidebarOpen}>
-            <>
-                <Transition
-                    enter="transition ease-in-out duration-150"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="transition ease-in-out duration-150"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                >
-                    <Backdrop onClick={closeSidebar} />
-                </Transition>
+        <>
+            {/* Backdrop */}
+            <div
+                onClick={closeSidebar}
+                className="fixed inset-0 bg-black/50 z-40"
+            />
 
-                <Transition
-                    enter="transition ease-in-out duration-150"
-                    enterFrom="opacity-0 transform -translate-x-20"
-                    enterTo="opacity-100"
-                    leave="transition ease-in-out duration-150"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0 transform -translate-x-20"
-                >
-                    <aside className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 lg:hidden">
-                        <SidebarContent />
-                    </aside>
-                </Transition>
-            </>
-        </Transition>
+            {/* Sidebar */}
+            <aside
+                className="fixed inset-y-0 z-50 w-64 mt-16 bg-white dark:bg-gray-800 transform transition-transform duration-300">
+                <SidebarContent/>
+            </aside>
+        </>
     )
 }
 
-export default MobileSidebar
+export default MobileSidebar;

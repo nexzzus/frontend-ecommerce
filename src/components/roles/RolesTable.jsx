@@ -5,7 +5,6 @@ import Button from "../Button.jsx";
 
 const RolesTable = ({roles, onEdit, onDelete}) => {
     const styles = useThemeStyles()
-    console.log("ROLES", roles)
 
     const getRoleColor = (role) => {
         return styles.roleColors[role] || styles.roleColors.DEFAULT
