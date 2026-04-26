@@ -15,6 +15,7 @@ const RolesTable = ({roles, onEdit, onDelete}) => {
                 <thead>
                 <tr className={styles.tableHeaderClass}>
                     <th className={`${styles.cellClass} font-semibold  whitespace-nowrap`}>Rol</th>
+                    {/*TODO: implementar listado de permisos, agregar y editar*/}
                     <th className={`${styles.cellClass} font-semibold  whitespace-nowrap`}>Acciones</th>
                 </tr>
                 </thead>
