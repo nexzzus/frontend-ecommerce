@@ -31,14 +31,14 @@ const RolesTable = ({roles, onEdit, onDelete}) => {
                             <div className="flex gap-2 justify-center flex-wrap">
                                 <button
                                     onClick={() => onEdit(role)}
-                                    className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium"
+                                    className={styles.buttonActionEdit}
                                     title="Editar usuario"
                                 >
                                     <PencilIcon className="h-4 w-4"/>
                                 </button>
                                 <button
                                     onClick={() => onDelete && onDelete(role.id)}
-                                    className="flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium"
+                                    className={styles.buttonActionDelete}
                                     title="Eliminar usuario"
                                 >
                                     <TrashIcon className="w-4 h-4"/>

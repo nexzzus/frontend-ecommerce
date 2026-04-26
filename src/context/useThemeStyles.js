@@ -80,5 +80,9 @@ export const useThemeStyles = () => {
             ? 'bg-gray-600 hover:bg-gray-700 text-white'
             : 'bg-gray-300 hover:bg-gray-400 text-gray-900',
 
+
+        // Boton para acciones de tabla (editar/eliminar)
+        buttonActionDelete: "flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium",
+        buttonActionEdit: "flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors text-xs sm:text-sm font-medium",
     }
 }
