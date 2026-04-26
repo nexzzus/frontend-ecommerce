@@ -1,16 +1,45 @@
 import React from 'react';
 import {useThemeStyles} from "../context/useThemeStyles.js";
 
-const Button = ({title, icono: Icon, action}) => {
+const Button = ({
+                    title,
+                    icono: Icon,
+                    children,
+                    variant = "default",
+                    type = "button",
+                    onClick,
+                    isLoading = false,
+                }) => {
     const styles = useThemeStyles();
+
+    const buttonVariants = {
+        cancel: styles.buttonCancel,
+        edit: styles.buttonActionEdit,
+        create: styles.buttonCreate,
+        delete: styles.buttonActionDelete,
+        default: styles.buttonPrimary
+    }
+
+    const buttonStyle = buttonVariants[variant] || styles.buttonPrimary
+
     return (
         <>
             <button
-                // onClick={() => onEdit(role)}
-                className={action === 'edit' ? styles.buttonActionEdit : styles.buttonActionDelete}
+                type={type}
+                className={`flex justify-center ${buttonStyle} ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 title={title}
+                aria-label={title}
+                onClick={onClick}
+                disabled={isLoading}
             >
-                <Icon className="h-4 w-4"/>
+                {isLoading ? (
+                    <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                    <>
+                        {Icon && <Icon className="h-4 w-4" />}
+                        {children}
+                    </>
+                )}
             </button>
         </>
     );
