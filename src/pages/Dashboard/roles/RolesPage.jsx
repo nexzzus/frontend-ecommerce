@@ -5,7 +5,6 @@ import Modal from "../../../components/Modal.jsx";
 import RolesForm from "../../../components/roles/RolesForm.jsx";
 import {toast} from "sonner";
 import Swal from "sweetalert2";
-import {deletePermissionService} from "../../../services/permissionService.js";
 import {deleteRoleService, getRoles} from "../../../services/rolesService.js";
 
 const RolesPage = () => {

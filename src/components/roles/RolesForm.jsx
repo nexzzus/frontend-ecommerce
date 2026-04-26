@@ -3,7 +3,6 @@ import {useThemeStyles} from "../../context/useThemeStyles.js";
 import {createRoleService, setRolePermissionsService, updateRoleService} from "../../services/rolesService.js";
 import {useEffect} from "react";
 import Button from "../Button.jsx";
-import {useRolesStore} from "../../store/rolesStore.js";
 import {usePermissionStore} from "../../store/permissionStore.jsx";
 
 const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
@@ -51,20 +50,20 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
             let roleId
 
             if (editingRole?.id) {
-                const res = await updateRoleService(editingRole?.id, {
+                await updateRoleService(editingRole?.id, {
                     name: data.name
                 })
                 roleId = editingRole.id
             } else {
-               const res = await createRoleService({
-                   name: data.name,
-               })
+                const res = await createRoleService({
+                    name: data.name,
+                })
                 roleId = res.data.id
             }
 
             // Asignar permisos
-            if (data.permissions?.length){
-                await setRolePermissionsService(roleId,{
+            if (data.permissions?.length) {
+                await setRolePermissionsService(roleId, {
                     permission_ids: data.permissions || [],
                 })
             }
@@ -93,7 +92,8 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
 
             {/*Errores generales*/}
             {errors.root && (
-                <div className="mt-4 p-3 bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-300 rounded-lg text-sm border border-red-200 dark:border-red-800">
+                <div
+                    className="mt-4 p-3 bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-300 rounded-lg text-sm border border-red-200 dark:border-red-800">
                     {errors.root.message}
                 </div>
             )}
@@ -128,13 +128,13 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
                 <label htmlFor="permissions">Permisos</label>
                 {isLoading ? (
                     <span className={styles.textPrimary}>Cargando permisos...</span>
-                ):(
+                ) : (
                     permissions.map((perm) => (
                         <label key={perm.id} className={"flex items-center gap-2 flex-wrap"}>
                             <input type="checkbox"
-                                      value={perm.id}
+                                   value={perm.id}
                                    {...register("permissions")}
-                                className={"w-4 h-4"}
+                                   className={"w-4 h-4"}
                             />
                             {perm.name}
                         </label>

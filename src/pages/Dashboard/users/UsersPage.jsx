@@ -2,15 +2,12 @@ import React, {useEffect} from 'react';
 import {getUsers, deleteUser} from "../../../services/userService.js";
 import UserForm from "../../../components/users/UserForm.jsx";
 import UserTable from "../../../components/users/UserTable.jsx";
-import {useTheme} from '../../../context/useTheme.js';
 import {useThemeStyles} from "../../../context/useThemeStyles.js";
 import Modal from "../../../components/Modal.jsx";
 import {toast} from "sonner";
 import Swal from "sweetalert2";
-import {deletePermissionService} from "../../../services/permissionService.js";
 
 const UsersPage = () => {
-        const {theme} = useTheme();
         const styles = useThemeStyles()
         const [users, setUsers] = React.useState([]);
         const [editingUser, setEditingUser] = React.useState(null);
@@ -22,7 +19,10 @@ const UsersPage = () => {
         }
 
         useEffect(() => {
-            fetchUsers()
+            const loadUsers = async () => {
+                await fetchUsers()
+            }
+            loadUsers()
         }, [])
 
         const handleOpenModal = () => {
@@ -66,7 +66,7 @@ const UsersPage = () => {
 
         return (
             <>
-                <Modal open={open} onClose={handleCloseModal} title={editingUser?.title}>
+                <Modal open={open} onClose={handleCloseModal} title={modalTitle}>
                     <UserForm
                         fetchUsers={fetchUsers}
                         editingUser={editingUser}
