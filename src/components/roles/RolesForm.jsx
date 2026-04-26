@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {useThemeStyles} from "../../context/useThemeStyles.js";
 import {createRoleService, updateRoleService} from "../../services/rolesService.js";
 import {useEffect} from "react";
+import Button from "../Button.jsx";
 
 const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
     const {
@@ -62,7 +63,9 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
 
             {/*Errores generales*/}
             {errors.root && (
-                <div className="mt-4 p-3 bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-300 rounded-lg text-sm border border-red-200 dark:border-red-800">{errors.root.message}</div>
+                <div className="mt-4 p-3 bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-300 rounded-lg text-sm border border-red-200 dark:border-red-800">
+                    {errors.root.message}
+                </div>
             )}
             <div>
                 <label htmlFor="name">Rol <span className={"text-red-500"}>*</span></label>
@@ -92,23 +95,21 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
 
             {/* Botones */}
             <div className="flex gap-3 pt-4 border-t">
-                <button disabled={isSubmitting}
-                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg"
+                <Button
+                    title={editingRole?.id ? "Editar" : "Crear"}
+                    variant={"create"}
+                    type={"submit"}
+                    isLoading={isSubmitting}
                 >
-                    {isSubmitting ?
-                        "Guardando..."
-                        : editingRole?.id
-                            ? "Editar"
-                            : "Crear"
-                    }
-                </button>
-                <button
-                    type="button"
+                    {editingRole?.id ? "Editar" : "Crear"}
+                </Button>
+                <Button
                     onClick={handleClose}
-                    className="flex-1 bg-gray-300 hover:bg-gray-400 py-2.5 rounded-lg"
+                    title={"Cancelar"}
+                    variant={"cancel"}
                 >
                     Cancelar
-                </button>
+                </Button>
             </div>
         </form>
     );
