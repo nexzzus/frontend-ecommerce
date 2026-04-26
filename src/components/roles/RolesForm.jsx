@@ -1,8 +1,10 @@
 import {useForm} from "react-hook-form";
 import {useThemeStyles} from "../../context/useThemeStyles.js";
-import {createRoleService, updateRoleService} from "../../services/rolesService.js";
+import {createRoleService, setRolePermissionsService, updateRoleService} from "../../services/rolesService.js";
 import {useEffect} from "react";
 import Button from "../Button.jsx";
+import {useRolesStore} from "../../store/rolesStore.js";
+import {usePermissionStore} from "../../store/permissionStore.jsx";
 
 const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
     const {
@@ -15,30 +17,58 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
     } = useForm({
             mode: "onChange",
             defaultValues: {
-                name: ""
+                name: "",
             }
         }
     )
+
+    const permissions = usePermissionStore(state => state.permissions)
+    const fetchPermissions = usePermissionStore(state => state.fetchPermissions)
+    const isLoading = usePermissionStore(state => state.isLoading)
+
+    useEffect(() => {
+        if (permissions.length === 0) {
+            fetchPermissions()
+        }
+    }, [fetchPermissions, permissions.length])
 
     const styles = useThemeStyles()
 
     useEffect(() => {
         if (editingRole?.id) {
-            Object.entries(editingRole).forEach(([key, value]) => {
-                setValue(key, value || "");
-            })
+            setValue("name", editingRole.name);
+
+            const permissionIds = editingRole.permissions?.map(p => p.id) || [];
+            setValue("permissions", permissionIds);
+
         } else {
-            reset()
+            reset();
         }
-    }, [editingRole, reset, setValue])
+    }, [editingRole, reset, setValue]);
 
     const onSubmit = async (data) => {
         try {
+            let roleId
+
             if (editingRole?.id) {
-                await updateRoleService(editingRole?.id, data)
+                const res = await updateRoleService(editingRole?.id, {
+                    name: data.name
+                })
+                roleId = editingRole.id
             } else {
-                await createRoleService(data)
+               const res = await createRoleService({
+                   name: data.name,
+               })
+                roleId = res.data.id
             }
+
+            // Asignar permisos
+            if (data.permissions?.length){
+                await setRolePermissionsService(roleId,{
+                    permission_ids: data.permissions || [],
+                })
+            }
+
             fetchRoles()
             handleClose()
         } catch (error) {
@@ -90,6 +120,25 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
                 />
                 {errors.name && (
                     <span className={styles.errorText}>{errors.name.message}</span>
+                )}
+            </div>
+
+            {/*Permisos*/}
+            <div>
+                <label htmlFor="permissions">Permisos</label>
+                {isLoading ? (
+                    <span className={styles.textPrimary}>Cargando permisos...</span>
+                ):(
+                    permissions.map((perm) => (
+                        <label key={perm.id} className={"flex items-center gap-2 flex-wrap"}>
+                            <input type="checkbox"
+                                      value={perm.id}
+                                   {...register("permissions")}
+                                className={"w-4 h-4"}
+                            />
+                            {perm.name}
+                        </label>
+                    ))
                 )}
             </div>
 

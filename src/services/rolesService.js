@@ -65,3 +65,7 @@ export const deleteRoleService = async (id) => {
         }
     }
 }
+
+export const setRolePermissionsService = async (roleId, data) => {
+    return await api.put(`/roles/${roleId}/permissions`, data);
+};

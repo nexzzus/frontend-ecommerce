@@ -5,6 +5,7 @@ import Button from "../Button.jsx";
 
 const RolesTable = ({roles, onEdit, onDelete}) => {
     const styles = useThemeStyles()
+    console.log("ROLES", roles)
 
     const getRoleColor = (role) => {
         return styles.roleColors[role] || styles.roleColors.DEFAULT
@@ -16,7 +17,7 @@ const RolesTable = ({roles, onEdit, onDelete}) => {
                 <thead>
                 <tr className={styles.tableHeaderClass}>
                     <th className={`${styles.cellClass} font-semibold  whitespace-nowrap`}>Rol</th>
-                    {/*TODO: implementar listado de permisos, agregar y editar*/}
+                    <th className={`${styles.cellClass} font-semibold  whitespace-nowrap`}>Permisos</th>
                     <th className={`${styles.cellClass} font-semibold  whitespace-nowrap`}>Acciones</th>
                 </tr>
                 </thead>
@@ -28,6 +29,22 @@ const RolesTable = ({roles, onEdit, onDelete}) => {
                             className={`${getRoleColor(role.name)} font-semibold text-xs rounded-full py-1 px-2 inline-block`}>
                             {role.name}
                         </span>
+                        </td>
+                        <td className={styles.cellColor}>
+                            {role.permissions?.length > 0 ? (
+                                <div className="flex flex-wrap gap-1 justify-center">
+                                    {role.permissions.map((permission) => (
+                                        <span
+                                            key={permission.id}
+                                            className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full"
+                                        >
+                    {permission.name}
+                </span>
+                                    ))}
+                                </div>
+                            ) : (
+                                <span className={`text-sm ${styles.textPrimary}`}>Sin permisos</span>
+                            )}
                         </td>
                         <td className={`${styles.cellClass} text-center`}>
                             <div className="flex gap-2 justify-center flex-wrap">
