@@ -6,6 +6,7 @@ import "react-phone-number-input/style.css";
 import {createUser, updateUser} from "../../services/userService.js";
 import {useThemeStyles} from "../../context/useThemeStyles.js";
 import {useRolesStore} from "../../store/rolesStore.js";
+import Button from "../Button.jsx";
 
 function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
     const {theme} = useTheme();
@@ -267,25 +268,23 @@ function UserForm({fetchUsers, editingUser, setEditingUser, onClose}) {
 
             {/* Botones */}
             <div className="flex gap-3 pt-4 border-t">
-                <button
+                <Button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg"
+                    isLoading={isSubmitting}
+                    variant="create"
                 >
-                    {isSubmitting
-                        ? "Guardando..."
-                        : editingUser?.id
-                            ? "Actualizar"
-                            : "Crear"}
-                </button>
+                    {editingUser?.id
+                        ? "Actualizar"
+                        : "Crear"}
+                </Button>
 
-                <button
-                    type="button"
+                <Button
                     onClick={handleClose}
-                    className="flex-1 bg-gray-300 hover:bg-gray-400 py-2.5 rounded-lg"
+                    variant={"cancel"}
+                    title={"Cancelar"}
                 >
                     Cancelar
-                </button>
+                </Button>
             </div>
         </form>
     );
