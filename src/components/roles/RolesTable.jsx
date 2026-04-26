@@ -1,6 +1,7 @@
 import React from 'react';
 import {useThemeStyles} from "../../context/useThemeStyles.js";
 import {PencilIcon, TrashIcon} from "@heroicons/react/24/outline";
+import Button from "../Button.jsx";
 
 const RolesTable = ({roles, onEdit, onDelete}) => {
     const styles = useThemeStyles()
@@ -30,20 +31,20 @@ const RolesTable = ({roles, onEdit, onDelete}) => {
                         </td>
                         <td className={`${styles.cellClass} text-center`}>
                             <div className="flex gap-2 justify-center flex-wrap">
-                                <button
+                                <Button
                                     onClick={() => onEdit(role)}
-                                    className={styles.buttonActionEdit}
                                     title="Editar usuario"
+                                    variant={"edit"}
+                                    icono={PencilIcon}
                                 >
-                                    <PencilIcon className="h-4 w-4"/>
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     onClick={() => onDelete && onDelete(role.id)}
-                                    className={styles.buttonActionDelete}
+                                    variant={"delete"}
                                     title="Eliminar usuario"
+                                    icono={TrashIcon}
                                 >
-                                    <TrashIcon className="w-4 h-4"/>
-                                </button>
+                                </Button>
                             </div>
                         </td>
                     </tr>
