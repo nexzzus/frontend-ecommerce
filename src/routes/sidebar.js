@@ -20,7 +20,12 @@ const routes = [
         path: '/app/permissions',
         icon: 'PermissionsIcon',
         name: 'Permisos',
-    }
+    },
+    {
+        path: '/app/categories',
+        icon: 'CategoriesIcon',
+        name: 'Categorías'
+    },
 ]
 
 export default routes
