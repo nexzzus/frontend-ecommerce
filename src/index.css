@@ -1,4 +1,65 @@
-@import "tailwindcss";
-@plugin "daisyui"{
-    themes: halloween;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset estilos de autocompletado del navegador */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #374151 !important;
+    background-color: white !important;
+    background-clip: content-box !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #374151 inset !important;
+    -webkit-text-fill-color: white !important;
+    background-color: #374151 !important;
+    background-clip: content-box !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* MODO CLARO (default) */
+.PhoneInputCountrySelect {
+    background-color: white;
+    color: black;
+}
+
+.PhoneInputCountrySelect option {
+    background-color: white;
+    color: black;
+}
+
+/* MODO OSCURO */
+.dark .PhoneInputCountrySelect {
+    background-color: #1f2937;
+    color: white;
+}
+
+.dark .PhoneInputCountrySelect option {
+    background-color: #1f2937;
+    color: white;
+}
+
+.dark .PhoneInputInput{
+    background-color: #374151;
+    color: white;
+}
+
+/* Estilos de error para inputs */
+input.border-2.border-red-500 {
+    border-color: rgb(239, 68, 68) !important;
+    border-width: 2px !important;
+    outline: none !important;
+}
+
+input.border-2:focus {
+    --tw-ring-color: rgb(239, 68, 68) !important;
+    outline: none !important;
 }
