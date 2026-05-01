@@ -7,7 +7,7 @@ const DiscountsTable = ({discounts, onEdit, onDelete}) => {
     const styles = useThemeStyles();
     return (
         <div className={"w-full border rounded-lg overflow-auto mt-4"}>
-            <table className={"w-full"}>
+            <table className={"w-full text-center"}>
                 <thead className={styles.tableHeaderClass}>
                 <tr>
                     <th className={styles.cellClass}>Código</th>

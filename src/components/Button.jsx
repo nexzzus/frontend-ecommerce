@@ -17,6 +17,7 @@ const Button = ({
         edit: styles.buttonActionEdit,
         create: styles.buttonCreate,
         delete: styles.buttonActionDelete,
+        new: styles.buttonNew,
         default: styles.buttonPrimary
     }
 

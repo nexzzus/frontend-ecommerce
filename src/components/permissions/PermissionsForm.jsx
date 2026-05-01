@@ -58,7 +58,7 @@ const PermissionsForm = ({fetchPermission, editingPermission, setEditingPermissi
             <form onSubmit={handleSubmit(onSubmit)} className={"text-left space-y-5"}>
                 <div>
 
-                    <label htmlFor="name">Nombre <span className={"text-red-500"}>*</span></label>
+                    <label htmlFor="name" className={styles.label}>Nombre <span className={"text-red-500"}>*</span></label>
                     <input
                         {...register("name", {
                             required: "El nombre es requerido",
@@ -84,7 +84,7 @@ const PermissionsForm = ({fetchPermission, editingPermission, setEditingPermissi
 
 
                 <div>
-                    <label htmlFor="description">Descripción <span className={"text-red-500"}>*</span></label>
+                    <label htmlFor="description" className={styles.label}>Descripción <span className={"text-red-500"}>*</span></label>
                     <textarea
                         {...register("description", {
                                 required: "La descripción es requerida",

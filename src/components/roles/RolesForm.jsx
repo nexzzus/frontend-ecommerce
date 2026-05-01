@@ -98,7 +98,7 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
                 </div>
             )}
             <div>
-                <label htmlFor="name">Rol <span className={"text-red-500"}>*</span></label>
+                <label htmlFor="name" className={styles.label}>Rol <span className={"text-red-500"}>*</span></label>
                 <input
                     {...register("name", {
                         required: "El nombre del rol es obligatorio",
@@ -125,7 +125,7 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
 
             {/*Permisos*/}
             <div>
-                <label htmlFor="permissions">Permisos</label>
+                <label htmlFor="permissions" className={styles.label}>Permisos</label>
                 {isLoading ? (
                     <span className={styles.textPrimary}>Cargando permisos...</span>
                 ) : (

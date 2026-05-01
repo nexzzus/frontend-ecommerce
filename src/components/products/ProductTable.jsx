@@ -7,7 +7,7 @@ const ProductTable = ({products, onEdit, onDelete}) => {
     const styles = useThemeStyles()
     return (
         <div className={"w-full rounded-lg border overflow-auto mt-6"}>
-            <table className={"text-left w-full"}>
+            <table className={"text-center w-full"}>
                 <thead className={styles.tableHeaderClass}>
                 <tr>
                     <th className={styles.cellClass}>Nombre</th>

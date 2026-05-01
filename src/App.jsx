@@ -20,6 +20,7 @@ function App() {
                 <SidebarProvider>
                     <Toaster richColors position={"top-right"}/>
                     <Routes>
+                        <Route path="/" element={<Navigate to="/app/users" replace />} />
                         <Route
                             path={"/auth/login"}
                             element={user ? <Navigate to={"/app/users"} replace/> : <Home/> }

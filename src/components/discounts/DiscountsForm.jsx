@@ -130,7 +130,7 @@ const DiscountsForm = ({ onClose, editingDiscount, setEditingDiscount, fetchDisc
                     </section>
  
                     <section>
-                        <label htmlFor="status">Estado <span className={"text-red-500"}>*</span></label>
+                        <label htmlFor="status" className={styles.label}>Estado <span className={"text-red-500"}>*</span></label>
                         <select name="status" id="status" {...register("status")} className={styles.inputBase}>
                             <option value="ACTIVO">ACTIVO</option>
                             <option value="BLOQUEADO">BLOQUEADO</option>
