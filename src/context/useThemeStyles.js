@@ -92,7 +92,7 @@ export const useThemeStyles = () => {
 
         // Boton para acciones de formulario (Guardar, Editar, Cancelar)
         buttonCancel: "flex-1 bg-gray-300 hover:bg-gray-400 py-2.5 rounded-lg",
-        buttonCreate: "flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-full",
+        buttonCreate: "flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg",
         buttonNew: "w-full sm:w-auto bg-blue-600 hover:bg-blue-700 px-1 py-2.5 rounded-lg font-semibold transition-colors shadow-md hover:shadow-lg text-white"
     }
 }
