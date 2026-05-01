@@ -20,6 +20,19 @@ const routes = [
         path: '/app/permissions',
         icon: 'PermissionsIcon',
         name: 'Permisos',
+    },{
+        path: '/app/products',
+        icon: 'ProductsIcon',
+        name: 'Productos'
+    },
+    {
+        path: '/app/categories',
+        icon: 'CategoriesIcon',
+        name: 'Categorías'
+    },{
+        path: '/app/discounts',
+        icon: 'DiscountsIcon',
+        name: 'Descuentos'
     }
 ]
 
