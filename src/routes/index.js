@@ -7,6 +7,8 @@ const Login = lazy(() => import('../pages/Login.jsx'))
 const Roles = lazy(() => import('../pages/Dashboard/roles/RolesPage.jsx'))
 const Permissions = lazy(() => import('../pages/Dashboard/permissions/PermissionsPage.jsx'))
 const Categories = lazy(() => import('../pages/Dashboard/categories/CategoriesPage.jsx'))
+const Products = lazy(() => import('../pages/Dashboard/products/ProductsPage.jsx'))
+const Discounts = lazy(()=> import('../pages/Dashboard/discounts/DiscountsPage.jsx'))
 
 /**
  * ⚠ These are internal routes!
@@ -30,10 +32,16 @@ const routes = [
     {
         path: 'permissions',
         component: Permissions
+    },{
+        path: 'products',
+        component: Products
     },
     {
         path: 'categories',
         component: Categories
+    },{
+        path: 'discounts',
+        component: Discounts
     },
     {
         path: '404',
