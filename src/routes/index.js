@@ -8,17 +8,14 @@ const Roles = lazy(() => import('../pages/Dashboard/roles/RolesPage.jsx'))
 const Permissions = lazy(() => import('../pages/Dashboard/permissions/PermissionsPage.jsx'))
 const Categories = lazy(() => import('../pages/Dashboard/categories/CategoriesPage.jsx'))
 const Products = lazy(() => import('../pages/Dashboard/products/ProductsPage.jsx'))
-const Discounts = lazy(()=> import('../pages/Dashboard/discounts/DiscountsPage.jsx'))
+const Discounts = lazy(() => import('../pages/Dashboard/discounts/DiscountsPage.jsx'))
+
+// Importamos tu módulo de órdenes (apuntando a la carpeta nueva que creaste)
+const ModuloOrdenes = lazy(() => import('../components/orders/ModuloOrdenes.jsx'))
 
 /**
  * ⚠ These are internal routes!
  * They will be rendered inside the app, using the default `containers/Layout`.
- * If you want to add a route to, let's say, a landing page, you should add
- * it to the `App`'s router, exactly like `Login`, `CreateAccount` and other pages
- * are routed.
- *
- * If you're looking for the links rendered in the SidebarContent, go to
- * `routes/sidebar.js`
  */
 const routes = [
     {
@@ -32,16 +29,22 @@ const routes = [
     {
         path: 'permissions',
         component: Permissions
-    },{
+    },
+    {
         path: 'products',
         component: Products
     },
     {
         path: 'categories',
         component: Categories
-    },{
+    },
+    {
         path: 'discounts',
         component: Discounts
+    },
+    {
+        path: 'ordenes', 
+        component: ModuloOrdenes
     },
     {
         path: '404',
