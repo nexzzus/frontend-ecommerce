@@ -63,7 +63,7 @@ const ProductsPage = () => {
         }
     }
  
-    const modalTitle = editingProduct?.id ? `Editar Usuario: ${editingProduct.name}` : "Nuevo Producto";
+    const modalTitle = editingProduct?.id ? `Editar Producto: ${editingProduct.name}` : "Nuevo Producto";
  
     return (
         <>

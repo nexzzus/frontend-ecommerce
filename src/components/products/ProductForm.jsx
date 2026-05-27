@@ -24,7 +24,7 @@ const ProductForm = ({onClose, setEditingProduct, editingProduct, fetchProducts}
             price: 0,
             description: "",
             stock: 0,
-            id_discount: "",
+            id_discount: null,
             category_ids: []
         }
     })
@@ -36,6 +36,14 @@ const ProductForm = ({onClose, setEditingProduct, editingProduct, fetchProducts}
     const categories = useCategoryStore(state => state.categories)
     const fetchCategories = useCategoryStore(state => state.fetchCategories)
     const isLoadingCategories = useCategoryStore(state => state.isLoading)
+
+    useEffect(() => {
+        fetchDiscounts()
+    }, [])
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
  
     useEffect(() => {
         if (categories.length === 0) {
@@ -55,7 +63,7 @@ const ProductForm = ({onClose, setEditingProduct, editingProduct, fetchProducts}
             setValue("description", editingProduct.description)
             setValue("price", editingProduct.price)
             setValue("stock", editingProduct.stock)
-            setValue("id_discount", editingProduct.discount?.id || "")
+            setValue("id_discount", editingProduct.discount?.id || null)
  
             setValue(
                 "category_ids",
@@ -68,12 +76,19 @@ const ProductForm = ({onClose, setEditingProduct, editingProduct, fetchProducts}
  
  
     const onSubmit = async (data) => {
+        console.log("data", data);
         try {
+            const payload = {
+                ...data,
+                id_discount: data.id_discount || null
+            }
+            console.log(payload)
+
             if (editingProduct?.id) {
-                await updateProductService(editingProduct.id, data)
+                await updateProductService(editingProduct.id, payload)
                 toast.success("Producto actualizado exitosamente")
             } else {
-                await createProductService(data)
+                await createProductService(payload)
                 toast.success("Producto creado exitosamente")
             }
             fetchProducts()
@@ -203,7 +218,9 @@ const ProductForm = ({onClose, setEditingProduct, editingProduct, fetchProducts}
                     <span className={"text-sm text-gray-500"}>Cargando descuentos...</span>
                 ) : (
                     <select
-                        {...register("id_discount")}
+                        {...register("id_discount",{
+                            setValueAs: (value) => value || null
+                        })}
                         className={styles.inputBase}
                     >
                         <option value="">Sin descuento</option>

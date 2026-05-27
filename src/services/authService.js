@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://ecommerce-p6t2.onrender.com';
 
 export const loginService = async (data)=>{
     try {

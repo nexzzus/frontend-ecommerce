@@ -15,12 +15,11 @@ function App() {
     }, [])
 
     return (
-        <>
             <BrowserRouter>
                 <SidebarProvider>
                     <Toaster richColors position={"top-right"}/>
                     <Routes>
-                        <Route path="/" element={<Navigate to="/app/users" replace />} />
+                        <Route path="/" element={user ? <Navigate to="/app/users" replace /> : <Navigate to="/auth/login" replace />} />
                         <Route
                             path={"/auth/login"}
                             element={user ? <Navigate to={"/app/users"} replace/> : <Home/> }
@@ -29,7 +28,6 @@ function App() {
                     </Routes>
                 </SidebarProvider>
             </BrowserRouter>
-        </>
     )
 }
 

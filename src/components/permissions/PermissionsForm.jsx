@@ -63,8 +63,8 @@ const PermissionsForm = ({fetchPermission, editingPermission, setEditingPermissi
                         {...register("name", {
                             required: "El nombre es requerido",
                             minLength: {
-                                value: 5,
-                                message: "Mínimo 5 caracteres",
+                                value: 3,
+                                message: "Mínimo 3 caracteres",
                             },
                             maxLength: {
                                 value: 50,

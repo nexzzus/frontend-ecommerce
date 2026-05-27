@@ -17,6 +17,7 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
             mode: "onChange",
             defaultValues: {
                 name: "",
+                permissions: []
             }
         }
     )
@@ -24,6 +25,10 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
     const permissions = usePermissionStore(state => state.permissions)
     const fetchPermissions = usePermissionStore(state => state.fetchPermissions)
     const isLoading = usePermissionStore(state => state.isLoading)
+
+    useEffect(() => {
+        fetchPermissions()
+    }, []);
 
     useEffect(() => {
         if (permissions.length === 0) {
@@ -49,6 +54,8 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
         try {
             let roleId
 
+            console.log("data", data)
+
             if (editingRole?.id) {
                 await updateRoleService(editingRole?.id, {
                     name: data.name
@@ -62,11 +69,11 @@ const RolesForm = ({fetchRoles, editingRole, setEditingRole, onClose}) => {
             }
 
             // Asignar permisos
-            if (data.permissions?.length) {
+            // if (data.permissions?.length) {
                 await setRolePermissionsService(roleId, {
                     permission_ids: data.permissions || [],
                 })
-            }
+            // }
 
             fetchRoles()
             handleClose()

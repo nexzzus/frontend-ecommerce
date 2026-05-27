@@ -42,6 +42,7 @@ const LoginForm = () => {
             // Redirigir a usuarios después del login exitoso
             navigate('/app/users')
         } catch (error) {
+            console.log(error.message)
             console.error('Error en login:', error);
             console.log('Setting error message:', error?.message);
             setErrorMessage(error?.message || 'Error al iniciar sesión')
