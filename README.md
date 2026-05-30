@@ -150,7 +150,7 @@ npm run lint     # Linting
 6. Agregar ícono en \src/utils/icons.js\
 ---
 
-# Video CRUD Final
-https://youtu.be/1pKFBwP4SsA
-
+# Video entrega final
+- CRUD: https://youtu.be/1pKFBwP4SsA
+- PYTEST: https://youtu.be/72VxZaDr3F4?si=TJlVetrPtCyDOCs4
 ---
