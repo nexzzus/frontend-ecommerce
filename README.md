@@ -148,3 +148,9 @@ npm run lint     # Linting
 4. Registrar ruta en \src/routes/index.js\
 5. Agregar al sidebar en \src/routes/sidebar.js\
 6. Agregar ícono en \src/utils/icons.js\
+---
+
+# Video CRUD Final
+https://youtu.be/1pKFBwP4SsA
+
+---
